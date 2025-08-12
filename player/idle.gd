@@ -1,22 +1,19 @@
 extends State
+class_name Idle
 
-func enter() -> void:
-	super()
-	parent.velocity.x = 0
-
-func process_input(event: InputEvent) -> String:
-	if Input.is_action_just_pressed('ui_accept') and parent.is_on_floor():
+func check_transition(input: InputPackage) -> String:
+	if input.actions.has("jump"):
 		return "jump"
-	if Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right")or Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down"):
-		return "move"
-	return ""
+	if input.input_direction != Vector2.ZERO:
+		return "skate"
+	return "unchanged"
+	
+func update(input: InputPackage, delta: float):
+	pass
+	
+func enter_state():
+	player.velocity.x = 0
+	player.velocity.z = 0
 
-func process_physics(delta: float) -> String:
-	parent.velocity.y -= gravity * delta
-	parent.move_and_slide()
-	
-	if !parent.is_on_floor():
-		return "idle"
-	return ""
-	
-	
+func exit_state():
+	pass

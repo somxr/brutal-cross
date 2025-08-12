@@ -1,27 +1,21 @@
-class_name State
 extends Node
+class_name State
 
-@export
-var SPEED: float = 300
+#this is a base class for all states
+#one function for transitioning states, and one for updating the model
+var player
 
-var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
+#all-state flags and variables here
 
-# Hold a reference to the parent so that it can be controlled by the state
-var parent: Player
-# Hold a reference to the state machine for easy state transitions
-var state_machine: Node
-
-func enter() -> void:
+func check_transition(input: InputPackage) -> String:
+	print_debug("Error, implement the check_transition function in your state")
+	return "Error, implement the check_transition function in your state"
+	
+func update(input: InputPackage, delta: float):
+	pass
+	
+func enter_state():
 	pass
 
-func exit() -> void:
+func exit_state():
 	pass
-
-func process_input(event: InputEvent) -> String:
-	return ""
-
-func process_frame(delta: float) -> String:
-	return ""
-
-func process_physics(delta: float) -> String:
-	return ""

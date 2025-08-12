@@ -8,8 +8,8 @@ class_name InputGatherer
 func gather_input() -> InputPackage:
 	var new_input = InputPackage.new()
 	
-	if Input.is_action_just_pressed("ui_accept") and player.is_on_floor():
-		new_input.is_jumping = true
+	if Input.is_action_just_pressed("ui_accept"):
+		new_input.actions.append("jump")
 		
 	new_input.input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	

@@ -1,37 +1,38 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmjddv5pd30x2"]
+[gd_scene load_steps=9 format=3 uid="uid://bd2hft778ocrh"]
 
-[ext_resource type="Script" uid="uid://c63uwetio1eur" path="res://player/player.gd" id="1_3vyb7"]
-[ext_resource type="Script" uid="uid://c5i5qssuinj3l" path="res://player/state_machine.gd" id="2_rkbax"]
-[ext_resource type="Script" uid="uid://u6vqqwa36ske" path="res://player/idle.gd" id="3_g1dw6"]
-[ext_resource type="Script" uid="uid://dnbdw7hgy13om" path="res://player/move.gd" id="4_yw30f"]
-[ext_resource type="Script" uid="uid://duukuee6lfw6" path="res://player/jump.gd" id="5_qjkh3"]
+[ext_resource type="Script" uid="uid://dcs1cqgrekcu3" path="res://player/Player.gd" id="1_g1dw6"]
+[ext_resource type="Script" uid="uid://bvetdbdmewvrq" path="res://player/input.gd" id="2_yw30f"]
+[ext_resource type="Script" uid="uid://c7vyapbb0k18q" path="res://player/idle.gd" id="3_g1dw6"]
+[ext_resource type="Script" uid="uid://dhhg63qw8jgi" path="res://player/model.gd" id="3_qjkh3"]
+[ext_resource type="Script" uid="uid://cs8klsgmjf1o1" path="res://player/skate.gd" id="5_qjkh3"]
+[ext_resource type="Script" uid="uid://d2powumxpfg62" path="res://player/jump.gd" id="6_g6k8r"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_oul6g"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3vyb7"]
 
 [node name="Player" type="CharacterBody3D"]
-script = ExtResource("1_3vyb7")
+script = ExtResource("1_g1dw6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_kqu6x")
+shape = SubResource("CapsuleShape3D_u8vuu")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_oul6g")
+mesh = SubResource("CapsuleMesh_3vyb7")
 
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource("2_rkbax")
+[node name="Input" type="Node" parent="."]
+script = ExtResource("2_yw30f")
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Model" type="Node" parent="."]
+script = ExtResource("3_qjkh3")
+
+[node name="Idle" type="Node" parent="Model"]
 script = ExtResource("3_g1dw6")
-SPEED = 30.0
 
-[node name="Move" type="Node" parent="StateMachine"]
-script = ExtResource("4_yw30f")
-SPEED = 30.0
-
-[node name="Jump" type="Node" parent="StateMachine"]
+[node name="Skate" type="Node" parent="Model"]
 script = ExtResource("5_qjkh3")
-SPEED = 30.0
+
+[node name="Jump" type="Node" parent="Model"]
+script = ExtResource("6_g6k8r")

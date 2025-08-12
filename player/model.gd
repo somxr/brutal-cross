@@ -1,22 +1,34 @@
 extends Node
 class_name PlayerModel
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var player: CharacterBody3D = $".."
 
-
 var current_state : State
 
-@onready var states: {
+@onready var states = {
 	"idle": $Idle,
-	"Skate": $Skate,
-	"Jump": $Jump
+	"skate": $Skate,
+	"jump": $Jump
 }
 
+func _ready():
+	current_state = states["idle"]
+	for state in states:
+		states[state].player = player
 
+func update(input: InputPackage, delta: float):
+	var next_state = current_state.check_transition(input)
+	if next_state != "unchanged":
+		switch_state(next_state)
+	current_state.update(input, delta)
+
+func switch_state(next_state: String):
+	current_state.exit_state()
+	current_state = states[next_state]
+	current_state.enter_state()
+	
 
 ###########################################################
 #func velocity_by_input(input: InputPackage, delta: float) -> Vector3:
