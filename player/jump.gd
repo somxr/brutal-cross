@@ -8,10 +8,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func check_transition(input: InputPackage) -> String:
 	if player.is_on_floor():
-		if input.input_direction != Vector2.ZERO:
-			return "skate"
-		else:
-			return "idle"
+		input.actions.sort_custom(states_priority_sort)
+		return input.actions[0]
 	return "unchanged"
 	
 func update(input: InputPackage, delta: float):

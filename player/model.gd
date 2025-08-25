@@ -4,6 +4,7 @@ class_name PlayerModel
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var player: CharacterBody3D = $".."
+@onready var visual: Node3D = $"../visual"
 
 var current_state : State
 
@@ -17,12 +18,14 @@ func _ready():
 	current_state = states["idle"]
 	for state in states:
 		states[state].player = player
+		states[state].visual = visual
 
 func update(input: InputPackage, delta: float):
 	var next_state = current_state.check_transition(input)
 	if next_state != "unchanged":
 		switch_state(next_state)
 	current_state.update(input, delta)
+	print(current_state)
 
 func switch_state(next_state: String):
 	current_state.exit_state()
