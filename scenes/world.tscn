@@ -27,9 +27,9 @@ shadow_enabled = true
 [node name="Floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
-size = Vector3(12.0569, 1, 12.4482)
+size = Vector3(43.5432, 1, 31.9202)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.862081, 0.506771, 0, -0.506771, 0.862081, 0, 6, 10)
+transform = Transform3D(1, 0, 0, 0, 0.661731, 0.749741, 0, -0.749741, 0.661731, 0, 8.75077, 8.91297)
 
 [node name="Player" parent="." instance=ExtResource("1_nnsk1")]

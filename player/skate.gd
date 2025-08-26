@@ -1,14 +1,17 @@
 extends State
 class_name Skate
 
-#@export var SPEED = 3.0
-#@export var TURN_SPEED = 2
-#@export var ANGULAR_SPEED = 13
+@export var SPEED = 3.0
+@export var TURN_SPEED = 2
+@export var ANGULAR_SPEED = 13
 
-@export var top_speed := 5.0
-@export var acceleration := 3.0
-@export var decelaration := 1.5
-var _xz_velocity : Vector3
+@export var top_speed := 5.0 # meters per second
+@export var acceleration := 3.0 # meters per second^2
+@export var decelaration := 1.5 
+var _xz_velocity : Vector3 # to separate ground velocity from vertical velocity
+@export var rotation_speed : float = PI * 2 #unit is PI per second so default speed is 2 PI/sec 
+
+var angle_difference : float 
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -19,9 +22,9 @@ func check_transition(input: InputPackage) -> String:
 	return input.actions[0]
 	
 func update(input: InputPackage, delta: float):
-	#rotate_velocity(input, delta)
+	rotate_velocity(input, delta)
 	#player.velocity = velocity_by_input(input, delta)
-	skate_velocity(input, delta)
+	#skate_velocity(input, delta)
 	visual.look_at(player.global_position - player.velocity.normalized())
 	player.move_and_slide()
 	
@@ -34,8 +37,17 @@ func exit_state():
 func skate_velocity(input: InputPackage, delta: float):
 	_xz_velocity = Vector3(player.velocity.x,0,player.velocity.z)
 	var direction = Vector3(input.input_direction.x,0,input.input_direction.y) 
+	
+	
+	
 	if direction:
-		_xz_velocity = _xz_velocity.move_toward(direction * top_speed, acceleration*delta)
+		angle_difference = wrapf(atan2(direction.x, direction.z) - visual.rotation.y, -PI, PI) 
+		visual.rotation.y += clamp(rotation_speed * delta, 0, abs(angle_difference)) * sign(angle_difference)
+		
+		if direction.dot(player.velocity) >= 0:
+			_xz_velocity = _xz_velocity.move_toward(direction * top_speed, acceleration*delta)
+		else:
+			_xz_velocity = _xz_velocity.move_toward(direction * top_speed, decelaration*delta)
 	else:
 		_xz_velocity = _xz_velocity.move_toward(Vector3.ZERO, decelaration*delta)
 		
@@ -45,15 +57,15 @@ func skate_velocity(input: InputPackage, delta: float):
 	player.velocity.x = _xz_velocity.x
 	player.velocity.z = _xz_velocity.z
 
-#func rotate_velocity(input: InputPackage, delta: float):
-	#var input_dir := Vector3(input.input_direction.x,0,input.input_direction.y)
-	#var facing_direction = visual.basis.z
-	#var angle = facing_direction.signed_angle_to(input_dir.slide(Vector3.UP), Vector3.UP) 
-	#if abs(angle) >= ANGULAR_SPEED * delta:
-		#player.velocity = facing_direction.rotated(Vector3.UP, sign(angle) * ANGULAR_SPEED * delta) * TURN_SPEED
-	#else:
-		#player.velocity = facing_direction.rotated(Vector3.UP, angle) * SPEED
-#
+func rotate_velocity(input: InputPackage, delta: float):
+	var input_dir := Vector3(input.input_direction.x,0,input.input_direction.y)
+	var facing_direction = visual.basis.z
+	var angle = facing_direction.signed_angle_to(input_dir.slide(Vector3.UP), Vector3.UP) 
+	if abs(angle) >= ANGULAR_SPEED * delta:
+		player.velocity = facing_direction.rotated(Vector3.UP, sign(angle) * ANGULAR_SPEED * delta) * TURN_SPEED
+	else:
+		player.velocity = facing_direction.rotated(Vector3.UP, angle) * SPEED
+
 #
 #func velocity_by_input(input: InputPackage, delta: float) -> Vector3:
 	#var new_velocity = player.velocity
