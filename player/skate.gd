@@ -2,8 +2,8 @@ extends State
 class_name Skate
 
 @export var SPEED = 3.0
-@export var TURN_SPEED = 2
-@export var ANGULAR_SPEED = 13
+@export var TURN_SPEED = 2.0
+@export var ANGULAR_SPEED = 13.0
 #
 #@export var top_speed := 5.0 # meters per second
 @export var acceleration := 3.0 # meters per second^2
