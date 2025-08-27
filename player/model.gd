@@ -25,7 +25,7 @@ func update(input: InputPackage, delta: float):
 	if next_state != "unchanged":
 		switch_state(next_state)
 	current_state.update(input, delta)
-	print(current_state)
+	#print(current_state)
 
 func switch_state(next_state: String):
 	current_state.exit_state()

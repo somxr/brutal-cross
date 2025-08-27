@@ -8,6 +8,7 @@ func _physics_process(delta: float) -> void:
 	model.update(input, delta)
 	#velocity = model.velocity_by_input(input, delta)	
 	move_and_slide()
-
+	
+	
 
 	
