@@ -73,9 +73,11 @@ func rotate_velocity(input: InputPackage, delta: float):
 	# input_dir.slide(UP) just flattens the vector, making sure it's in the x and z with y (up) being zero.  
 	var angle : float = facing_direction.signed_angle_to(Vector3(input.input_direction.x,0,input.input_direction.y), Vector3.UP) 
 	
+	var direction = Vector3(input.input_direction.x,0,input.input_direction.y) 
+	
 	if input.input_direction:
 		#if angle is bigger than angular speed
-		if abs(angle) >= ANGULAR_SPEED * delta:
+		if abs(angle) >= ANGULAR_SPEED * delta and abs(angle) < 135:
 			# rotate the velocity vector by angular speed each frame. So the turning is gradual. Sign(angle) just decides if clockwise or anti.
 			# Multiplied by "turn speed" because this is the move speed which you should be moving during a turn.
 			# Remember if there was no turning it would just be velocity = direction.x * TOP_SPEED. If the speed was always the same then TURN_SPEED here would also just be speed.
