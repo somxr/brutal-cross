@@ -42,7 +42,7 @@ script = ExtResource("3_g1dw6")
 script = ExtResource("5_qjkh3")
 TOP_SPEED = 6.0
 TURN_SPEED = 5.0
-ANGULAR_SPEED = 6.5
+ANGULAR_SPEED = 5.0
 ACCELERATION = 4.0
 
 [node name="Jump" type="Node" parent="Model"]
