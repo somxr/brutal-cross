@@ -2,23 +2,26 @@ extends State
 class_name Skate
 
 ## Top speed character moves forward
-@export var TOP_SPEED = 3.0
+@export var TOP_SPEED = 3.0 # meters per second
 ## Top speed character moves while turning
 @export var TURN_SPEED = 2.0
 ## How fast a character turns from direction it's facing moving to the direction the player is inputing. Circular speed.
 @export var ANGULAR_SPEED = 13.0
 
+@export var ACCELERATION := 3.0 # meters per second^2
+@export var DECELERATION := 4.0
+
 #@export var top_speed := 5.0 # meters per second
-@export var acceleration := 3.0 # meters per second^2
-@export var deceleration := 4.0
 #var _xz_velocity : Vector3 # to separate ground velocity from vertical velocity
 #@export var rotation_speed : float = PI * 2 #unit is PI per second so default speed is 2 PI/sec 
-#
 #var angle_difference : float 
 
+# these are to change the different speeds over time, for example gradually increment from 0 to full speed
 var calculated_speed : float
-var calculated_velocity : Vector3
 var calculated_angular_speed : float
+# Different types of velocities get decided if you're turning or moving straight, only gets applied in the end of the movement function
+var calculated_velocity : Vector3
+
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -52,11 +55,11 @@ func exit_state():
 		#visual.rotation.y += clamp(rotation_speed * delta, 0, abs(angle_difference)) * sign(angle_difference)
 		#
 		#if direction.dot(player.velocity) >= 0:
-			#_xz_velocity = _xz_velocity.move_toward(direction * top_speed, acceleration*delta)
+			#_xz_velocity = _xz_velocity.move_toward(direction * top_speed, ACCELERATION*delta)
 		#else:
-			#_xz_velocity = _xz_velocity.move_toward(direction * top_speed, deceleration*delta)
+			#_xz_velocity = _xz_velocity.move_toward(direction * top_speed, DECELERATION*delta)
 	#else:
-		#_xz_velocity = _xz_velocity.move_toward(Vector3.ZERO, deceleration*delta)
+		#_xz_velocity = _xz_velocity.move_toward(Vector3.ZERO, DECELERATION*delta)
 		#
 	#if not player.is_on_floor():
 		#player.velocity.y -= gravity * delta
@@ -76,31 +79,29 @@ func rotate_velocity(input: InputPackage, delta: float):
 			# rotate the velocity vector by angular speed each frame. So the turning is gradual. Sign(angle) just decides if clockwise or anti.
 			# Multiplied by "turn speed" because this is the move speed which you should be moving during a turn.
 			# Remember if there was no turning it would just be velocity = direction.x * TOP_SPEED. If the speed was always the same then TURN_SPEED here would also just be speed.
-			calculated_speed = move_toward(calculated_speed,TURN_SPEED, acceleration*delta)
-			calculated_angular_speed = move_toward(calculated_angular_speed,ANGULAR_SPEED, acceleration*delta)
+			calculated_speed = move_toward(calculated_speed,TURN_SPEED, ACCELERATION*delta)
+			calculated_angular_speed = move_toward(calculated_angular_speed,ANGULAR_SPEED, ACCELERATION*delta)
 			calculated_velocity = facing_direction.rotated(Vector3.UP, sign(angle) * calculated_angular_speed * delta) * calculated_speed
 		else:
 			#else rotate it by the angle. If the turn is even smaller than the angular speed then just turn it directly by that tiny bit?
-			calculated_speed = move_toward(calculated_speed,TOP_SPEED, acceleration*delta)
+			calculated_speed = move_toward(calculated_speed,TOP_SPEED, ACCELERATION*delta)
 			calculated_velocity = facing_direction.rotated(Vector3.UP, angle) * calculated_speed
 	else:
-			print("getting into decelaration mode")
-			print("calculated_velocity", calculated_velocity)
-			print("calculated_speed", calculated_speed)
-
-			calculated_speed = move_toward(calculated_speed, 0.0, deceleration*delta)
-			calculated_angular_speed = move_toward(calculated_angular_speed, 0.0, deceleration*delta)
-			calculated_velocity = calculated_velocity.move_toward(Vector3.ZERO, deceleration*delta)
-			
+			# if no input_direction, then decelerate to zero and bring back all the calculation variables to zero to reset them.
+			calculated_speed = move_toward(calculated_speed, 0.0, DECELERATION*delta)
+			calculated_angular_speed = move_toward(calculated_angular_speed, 0.0, DECELERATION*delta)
+			calculated_velocity = calculated_velocity.move_toward(Vector3.ZERO, DECELERATION*delta)
+	
+	# Calculated velocity will be determined based on the branching of the if statements, whatever it is gets assigned as the final player velocity here		
 	player.velocity = calculated_velocity
 
-	
+
 
 #
 #func velocity_by_input(input: InputPackage, delta: float) -> Vector3:
 	#var new_velocity = player.velocity
 	#
-	## Get the input direction and handle the movement/deceleration.
+	## Get the input direction and handle the movement/DECELERATION.
 	## As good practice, you should replace UI actions with custom gameplay actions.
 	#var input_dir := input.input_direction
 	#var direction = (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
