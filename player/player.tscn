@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://dhhg63qw8jgi" path="res://player/model.gd" id="3_qjkh3"]
 [ext_resource type="Script" uid="uid://cs8klsgmjf1o1" path="res://player/skate.gd" id="5_qjkh3"]
 [ext_resource type="Script" uid="uid://d2powumxpfg62" path="res://player/jump.gd" id="6_g6k8r"]
-[ext_resource type="PackedScene" uid="uid://d22pr5oca2nmj" path="res://player/pc_rig_.tscn" id="7_boad6"]
 [ext_resource type="Script" uid="uid://bjpp5mmltfdq0" path="res://player/stop.gd" id="7_rgyib"]
+[ext_resource type="PackedScene" uid="uid://cyenil8j5opgr" path="res://scenes/valerie.tscn" id="8_rgyib"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 
@@ -72,7 +72,7 @@ mesh = SubResource("CapsuleMesh_rgyib")
 
 [node name="visual" type="Node3D" parent="."]
 
-[node name="pc_rig0" parent="visual" instance=ExtResource("7_boad6")]
+[node name="pc_rig0" parent="visual" instance=ExtResource("8_rgyib")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 6.02127, 7.45014)

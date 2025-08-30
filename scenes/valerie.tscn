@@ -1,0 +1,590 @@
+[gd_scene load_steps=10 format=3 uid="uid://cyenil8j5opgr"]
+
+[ext_resource type="PackedScene" uid="uid://dmf3r5teqxkxs" path="res://assets/player_character/protag_anim01/pc_rig0.fbx" id="1_bqmxt"]
+[ext_resource type="Script" uid="uid://c66nvjg5ps52s" path="res://scenes/valerie.gd" id="2_4patd"]
+[ext_resource type="Animation" uid="uid://tqrs6avdpyhf" path="res://assets/player_character/protag_anim01/res/idle.res" id="2_7jr5i"]
+[ext_resource type="Animation" uid="uid://cy7rnm33upd3t" path="res://assets/player_character/protag_anim_test00/slow_skate.res" id="3_7jr5i"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4patd"]
+_data = {
+&"idle": ExtResource("2_7jr5i"),
+&"slow_skate": ExtResource("3_7jr5i")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4patd"]
+animation = &"player_anim/slow_skate"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7jr5i"]
+animation = &"player_anim/idle"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_7jr5i"]
+xfade_time = 0.25
+input_0/name = "idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "skate"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_4patd"]
+graph_offset = Vector2(-609.146, -96.4518)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_4patd")
+nodes/Animation/position = Vector2(-280, 180)
+nodes/idle/node = SubResource("AnimationNodeAnimation_7jr5i")
+nodes/idle/position = Vector2(-240, -20)
+nodes/output/position = Vector2(420, 100)
+nodes/state_anim/node = SubResource("AnimationNodeTransition_7jr5i")
+nodes/state_anim/position = Vector2(80, 40)
+node_connections = [&"output", 0, &"state_anim", &"state_anim", 0, &"idle", &"state_anim", 1, &"Animation"]
+
+[node name="pc_rig0" instance=ExtResource("1_bqmxt")]
+script = ExtResource("2_4patd")
+
+[node name="rig04_0001_FitSkeleton" parent="rig04_0001_Group" index="0"]
+visible = false
+
+[node name="rig04_0001_MotionSystem" parent="rig04_0001_Group" index="1"]
+visible = false
+
+[node name="rig04_0001_FKParentConstraintToChest_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKSystem" index="0"]
+transform = Transform3D(-0.00448691, -0.00105083, 0.999989, 0.995546, -0.0941781, 0.00436801, 0.0941725, 0.995555, 0.00146872, 0.0720551, 1.40516, 0.0396502)
+
+[node name="rig04_0001_FKScapula_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKSystem/rig04_0001_FKParentConstraintToChest_M/rig04_0001_FKOffsetScapula_R/rig04_0001_FKExtraScapula_R" index="0"]
+transform = Transform3D(0.989905, -0.141638, 0.00515713, 0.140523, 0.985552, 0.0945524, -0.0184748, -0.0928732, 0.995507, 0, 0, 0)
+
+[node name="Skeleton3D" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKSystem/rig04_0001_FKParentConstraintToChest_M/rig04_0001_FKOffsetScapula_R/rig04_0001_FKExtraScapula_R/rig04_0001_FKScapula_R" index="0"]
+bones/3/rotation = Quaternion(-0.00139068, 0.0236248, -0.033077, 0.999173)
+bones/8/rotation = Quaternion(-0.00742006, -0.068674, 0.0600048, 0.995805)
+bones/12/rotation = Quaternion(0.00783316, 0.0538929, 0.0627716, 0.996541)
+
+[node name="rig04_0001_FKScapula_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKSystem/rig04_0001_FKParentConstraintToChest_M/rig04_0001_FKOffsetScapula_L/rig04_0001_FKExtraScapula_L" index="0"]
+transform = Transform3D(0.98986, -0.141688, 0.0101123, 0.140098, 0.98555, 0.0952046, -0.0234555, -0.0928224, 0.995407, 0, 0, 0)
+
+[node name="Skeleton3D" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKSystem/rig04_0001_FKParentConstraintToChest_M/rig04_0001_FKOffsetScapula_L/rig04_0001_FKExtraScapula_L/rig04_0001_FKScapula_L" index="0"]
+bones/3/rotation = Quaternion(-0.00139068, 0.0236248, -0.033077, 0.999173)
+bones/8/rotation = Quaternion(-0.0547939, -0.0600959, 0.0683939, 0.994338)
+bones/12/rotation = Quaternion(0.00783316, 0.0538929, 0.0627716, 0.996541)
+
+[node name="rig04_0001_FKParentConstraintToWrist_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKSystem" index="1"]
+transform = Transform3D(-0.458221, -0.474892, -0.75134, -0.886239, 0.308709, 0.345369, 0.0679317, 0.824121, -0.562325, -0.192081, 1.10897, -0.0601903)
+
+[node name="rig04_0001_FKParentConstraintToRoot_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKSystem" index="2"]
+transform = Transform3D(-0.155371, -0.000235051, 0.987856, 0.951219, -0.269851, 0.149544, 0.266539, 0.962902, 0.0421506, 0.0851077, 1.12766, -0.0262793)
+
+[node name="rig04_0001_FKOffsetRoot_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKSystem" index="3"]
+transform = Transform3D(-0.00460232, -0.000235392, 0.99999, 0.962892, -0.269851, 0.00436807, 0.269847, 0.962902, 0.0014686, 0.073228, 1.15318, -0.00951516)
+
+[node name="rig04_0001_HipSwinger_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKSystem/rig04_0001_FKOffsetRoot_M/rig04_0001_FKExtraRoot_M/rig04_0001_FKRoot_M/rig04_0001_HipSwingerOffset_M" index="0"]
+transform = Transform3D(0.988561, 0, 0.150823, 0, 1, 0, -0.150823, 0, 0.988561, 0, 0, 1.26218e-31)
+
+[node name="rig04_0001_HipSwingReversePart1" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKSystem/rig04_0001_FKOffsetRoot_M/rig04_0001_FKExtraRoot_M/rig04_0001_FKRoot_M/rig04_0001_HipSwingReverse" index="0"]
+transform = Transform3D(0.997138, 0, 0.0756005, 0, 1, 0, -0.0756005, 0, 0.997138, -0.0518589, 0, 0)
+
+[node name="rig04_0001_HipSwingReversePart2" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKSystem/rig04_0001_FKOffsetRoot_M/rig04_0001_FKExtraRoot_M/rig04_0001_FKRoot_M/rig04_0001_HipSwingReverse/rig04_0001_HipSwingReversePart1" index="0"]
+transform = Transform3D(0.997138, 0, 0.0756005, 0, 1, 0, -0.0756005, 0, 0.997138, -0.0518589, 0, 0)
+
+[node name="rig04_0001_HipSwingReverseXPart1" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKSystem/rig04_0001_FKOffsetRoot_M/rig04_0001_FKExtraRoot_M/rig04_0001_FKRoot_M/rig04_0001_HipSwingReverse" index="1"]
+transform = Transform3D(0.997138, 0, 0.0756005, 0, 1, 0, -0.0756005, 0, 0.997138, -0.0518589, 0, 0)
+
+[node name="rig04_0001_HipSwingReverseXPart2" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKSystem/rig04_0001_FKOffsetRoot_M/rig04_0001_FKExtraRoot_M/rig04_0001_FKRoot_M/rig04_0001_HipSwingReverse" index="2"]
+transform = Transform3D(0.988561, 0, 0.150823, 0, 1, 0, -0.150823, 0, 0.988561, -0.103718, 0, 6.31089e-32)
+
+[node name="Skeleton3D" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKSystem/rig04_0001_FKOffsetRoot_M" index="1"]
+bones/0/position = Vector3(-0.0291708, -0.00926161, 0.0115776)
+bones/0/rotation = Quaternion(-1.22907e-32, 0.075628, -9.32187e-34, 0.997136)
+bones/3/rotation = Quaternion(-0.00644074, -0.0377661, 0.0564981, 0.997667)
+bones/8/rotation = Quaternion(-0.00107594, -0.037812, 0.0284232, 0.99888)
+
+[node name="rig04_0001_InbetweenRootPart0_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKSystem/rig04_0001_FKOffsetRoot_M/rig04_0001_InbetweenRoot_M" index="0"]
+transform = Transform3D(0.988561, 0, 0.150823, 0, 1, 0, -0.150823, 0, 0.988561, 0, 0, 0)
+
+[node name="rig04_0001_InbetweenRootPart1_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKSystem/rig04_0001_FKOffsetRoot_M/rig04_0001_InbetweenRoot_M/rig04_0001_InbetweenRootPart0_M" index="0"]
+transform = Transform3D(0.990763, -0.112246, -0.0760838, 0.113219, 0.993533, 0.00858399, 0.0746282, -0.0171189, 0.997064, 0, 1.77636e-17, 0)
+
+[node name="rig04_0001_InbetweenRootPart2_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKSystem/rig04_0001_FKOffsetRoot_M/rig04_0001_InbetweenRoot_M/rig04_0001_InbetweenRootPart0_M/rig04_0001_InbetweenRootPart1_M" index="0"]
+transform = Transform3D(0.995525, -0.0567014, -0.0756005, 0.0568641, 0.998382, 0, 0.0754782, -0.00429895, 0.997138, 0, 0, 0)
+
+[node name="rig04_0001_FKParentConstraintToWrist_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKSystem" index="4"]
+transform = Transform3D(-0.419021, -0.414627, -0.807779, 0.904864, -0.264288, -0.333726, -0.0751142, -0.870769, 0.485923, 0.331432, 1.10781, -0.0595663)
+
+[node name="rig04_0001_IKParentConstraintShoulder_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints" index="0"]
+transform = Transform3D(-0.918545, -0.0860958, -0.385826, -0.331052, -0.365883, 0.86979, -0.216053, 0.92667, 0.307578, 0.0271875, 1.46671, 0.0536333)
+
+[node name="Skeleton3D" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKParentConstraintShoulder_R/rig04_0001_IKXOffsetShoulder_R" index="0"]
+bones/0/rotation = Quaternion(0.167154, -0.0859152, -0.118696, 0.974982)
+bones/2/rotation = Quaternion(2.87621e-16, 1.36103e-15, 0.206103, 0.97853)
+bones/4/rotation = Quaternion(0.647612, 0.0564516, 0.0460463, 0.75848)
+
+[node name="rig04_0001_IKParentConstraintHip_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints" index="1"]
+transform = Transform3D(-0.155371, -0.000235025, 0.987856, 0.951219, -0.269851, 0.149544, 0.266539, 0.962902, 0.0421506, 0.0851077, 1.12766, -0.0262793)
+
+[node name="Skeleton3D" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKParentConstraintHip_R/rig04_0001_IKXOffsetHip_R" index="0"]
+bones/0/rotation = Quaternion(0.136335, -0.172378, 0.273681, 0.936375)
+bones/2/rotation = Quaternion(-2.96557e-16, 1.21825e-15, -0.365927, 0.930644)
+bones/4/rotation = Quaternion(0.0179051, 0.0674597, 0.121192, 0.990172)
+
+[node name="Skeleton3D" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKParentConstraintRoot_M/rig04_0001_IKXOffsetRoot_M" index="0"]
+bones/0/position = Vector3(-0.0355736, 0.00371568, 0.073228)
+bones/0/rotation = Quaternion(-0.00031174, 0.00228295, 0.0844815, 0.996422)
+bones/6/position = Vector3(0.0518584, -1.93841e-11, 9.5555e-06)
+bones/8/position = Vector3(0.0446847, 2.1247e-06, -0.000104127)
+bones/12/position = Vector3(0.0446741, -1.93013e-06, 9.45906e-05)
+
+[node name="Skeleton3D" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKParentConstraintRoot_M" index="1"]
+bones/0/rotation = Quaternion(-0.00031174, 0.00228295, 0.0844815, 0.996422)
+
+[node name="rig04_0001_IKParentConstraintShoulder_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints" index="3"]
+transform = Transform3D(-0.92014, -0.0865393, -0.381908, 0.327392, 0.365069, -0.871516, 0.214843, -0.92695, -0.307583, 0.116342, 1.4671, 0.0537642)
+
+[node name="Skeleton3D" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKParentConstraintShoulder_L/rig04_0001_IKXOffsetShoulder_L" index="0"]
+bones/0/rotation = Quaternion(0.156742, 0.113571, -0.240895, 0.951054)
+bones/2/rotation = Quaternion(3.13761e-15, 5.55448e-15, 0.593093, 0.805134)
+bones/4/rotation = Quaternion(0.547259, -0.219077, -0.0688426, 0.804844)
+
+[node name="rig04_0001_IKParentConstraintHip_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints" index="4"]
+transform = Transform3D(-0.155371, -0.000235025, 0.987856, 0.951219, -0.269851, 0.149544, 0.266539, 0.962902, 0.0421506, 0.0851077, 1.12766, -0.0262793)
+
+[node name="Skeleton3D" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKParentConstraintHip_L/rig04_0001_IKXOffsetHip_L" index="0"]
+bones/0/rotation = Quaternion(0.222517, 0.0292021, 0.246807, 0.94272)
+bones/2/rotation = Quaternion(-1.2527e-16, 7.05243e-16, -0.320957, 0.947094)
+bones/4/rotation = Quaternion(0.0515274, 0.0138871, 0.116942, 0.991704)
+
+[node name="rig04_0001_IKSpSpine2Offset_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints" index="5"]
+transform = Transform3D(-0.155371, -0.000235051, 0.987856, 0.951219, -0.269851, 0.149544, 0.266539, 0.962902, 0.0421506, 0.0851077, 1.12766, -0.0262793)
+
+[node name="rig04_0001_IKSpRootPart1FollowOffset_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKSpSpine2Offset_M" index="1"]
+transform = Transform3D(0.988561, 3.79792e-10, -0.150823, -3.84187e-10, 1, 9.17669e-16, 0.150823, 5.79432e-11, 0.988561, 0.0818547, 0.00925895, 0.000605561)
+
+[node name="rig04_0001_IKSpRootPart2FollowOffset_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKSpSpine2Offset_M" index="2"]
+transform = Transform3D(0.988561, 3.88457e-09, -0.150823, -1.77636e-15, 1, 2.57559e-08, 0.150823, -2.54612e-08, 0.988561, 0.13316, 0.0092685, 0.00807679)
+
+[node name="rig04_0001_IKSpSpine1FollowOffset_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKSpSpine2Offset_M" index="3"]
+transform = Transform3D(0.922955, 0.354127, -0.150823, -0.358225, 0.933635, -5.40167e-08, 0.140813, 0.0540286, 0.988561, 0.184412, 0.00926118, 0.0160494)
+
+[node name="rig04_0001_IKSpSpine1Part1FollowOffset_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKSpSpine2Offset_M" index="4"]
+transform = Transform3D(0.922955, 0.354127, -0.150823, -0.358225, 0.933635, 3.1665e-08, 0.140813, 0.0540285, 0.988561, 0.225623, -0.00674609, 0.0225951)
+
+[node name="rig04_0001_IKSpSpine1Part2FollowOffset_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKSpSpine2Offset_M" index="5"]
+transform = Transform3D(0.922955, 0.354127, -0.150823, -0.358225, 0.933635, 5.58794e-09, 0.140813, 0.0540285, 0.988561, 0.266854, -0.0227519, 0.0289392)
+
+[node name="rig04_0001_IKSpChestFollowOffset_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKSpSpine2Offset_M" index="6"]
+transform = Transform3D(0.92876, 0.33861, -0.150823, -0.342528, 0.939507, 1.11759e-08, 0.141699, 0.051661, 0.988561, 0.308103, -0.0387565, 0.0351368)
+
+[node name="Skeleton3D" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKAcSpine2Offset_M" index="0"]
+bones/0/position = Vector3(-0.0355736, 0.00371568, 0.073228)
+bones/0/rotation = Quaternion(-0.00031174, 0.00228295, 0.0844815, 0.996422)
+bones/2/position = Vector3(0.0155096, 0.0124401, 0.0729895)
+bones/2/rotation = Quaternion(-0.000311765, 0.00228295, 0.0844736, 0.996423)
+bones/3/position = Vector3(0.0665929, 0.0211636, 0.072751)
+bones/3/rotation = Quaternion(-0.000376627, 0.00227315, 0.0560759, 0.998424)
+bones/4/position = Vector3(0.11809, 0.026966, 0.0725135)
+bones/4/rotation = Quaternion(-0.000653779, 0.00220944, -0.0673451, 0.997727)
+bones/5/position = Vector3(0.162333, 0.0209654, 0.0723206)
+bones/5/rotation = Quaternion(-0.000722391, 0.00218797, -0.098436, 0.995141)
+bones/6/position = Vector3(0.206116, 0.0122176, 0.0721326)
+bones/6/rotation = Quaternion(-0.000722406, 0.00218797, -0.0984407, 0.99514)
+bones/7/position = Vector3(0.249024, 0.00364403, 0.0719482)
+bones/7/rotation = Quaternion(-0.00031174, 0.00228295, 0.0844815, 0.996422)
+
+[node name="rig04_0001_IKAcPociXformRoot_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKAcSpine2Offset3_M" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.073228, 1.15318, -0.00951516)
+
+[node name="rig04_0001_IKAcPociXformRootPart1_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKAcSpine2Offset3_M" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0729895, 1.20308, 0.00446881)
+
+[node name="rig04_0001_IKAcPociXformRootPart2_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKAcSpine2Offset3_M" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.072751, 1.25298, 0.018452)
+
+[node name="rig04_0001_IKAcPociXformSpine1_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKAcSpine2Offset3_M" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0725135, 1.3036, 0.0295728)
+
+[node name="rig04_0001_IKAcPociXformSpine1Part1_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKAcSpine2Offset3_M" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0723206, 1.34822, 0.0282008)
+
+[node name="rig04_0001_IKAcPociXformSpine1Part2_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKAcSpine2Offset3_M" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0721326, 1.39268, 0.0240487)
+
+[node name="rig04_0001_IKAcPociXformChest_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKAcSpine2Offset3_M" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0719482, 1.43625, 0.0199791)
+
+[node name="rig04_0001_IKAcSpine2Offset2_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints" index="8"]
+transform = Transform3D(-0.155371, -0.000235051, 0.987856, 0.951219, -0.269851, 0.149544, 0.266539, 0.962902, 0.0421506, 0.0851077, 1.12766, -0.0262793)
+
+[node name="rig04_0001_IKAcRootPart1FollowOffset_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKAcSpine2Offset2_M" index="0"]
+transform = Transform3D(0.988561, 5.14863e-12, -0.150823, -5.22069e-12, 1, -8.1832e-14, 0.150823, 8.68295e-13, 0.988561, 0.0818547, 0.00925895, 0.000605562)
+
+[node name="rig04_0001_IKAcRootPart2FollowOffset_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKAcSpine2Offset2_M" index="1"]
+transform = Transform3D(0.988561, 3.43066e-14, -0.150823, -2.39895e-15, 1, 2.11739e-13, 0.150823, -2.08955e-13, 0.988561, 0.13316, 0.0092685, 0.0080768)
+
+[node name="rig04_0001_IKAcSpine1FollowOffset_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKAcSpine2Offset2_M" index="2"]
+transform = Transform3D(0.922955, 0.354127, -0.150823, -0.358225, 0.933635, -2.42144e-08, 0.140813, 0.0540285, 0.988561, 0.184412, 0.00926118, 0.0160494)
+
+[node name="rig04_0001_IKAcSpine1Part1FollowOffset_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKAcSpine2Offset2_M" index="3"]
+transform = Transform3D(0.922955, 0.354127, -0.150823, -0.358225, 0.933635, 7.45058e-09, 0.140813, 0.0540285, 0.988561, 0.225623, -0.00674609, 0.022595)
+
+[node name="rig04_0001_IKAcSpine1Part2FollowOffset_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKAcSpine2Offset2_M" index="4"]
+transform = Transform3D(0.922955, 0.354127, -0.150823, -0.358225, 0.933635, 5.58794e-09, 0.140813, 0.0540285, 0.988561, 0.266854, -0.0227519, 0.0289392)
+
+[node name="rig04_0001_IKAcChestFollowOffset_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKJoints/rig04_0001_IKAcSpine2Offset2_M" index="5"]
+transform = Transform3D(0.92876, 0.33861, -0.150823, -0.342528, 0.939507, 5.58794e-09, 0.141699, 0.051661, 0.988561, 0.308112, -0.0387565, 0.0350116)
+
+[node name="rig04_0001_IKcvOffsetSpine21_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKHandle/rig04_0001_IKHandleFollowMain" index="2"]
+transform = Transform3D(0.999989, -0.00455287, -0.000712361, 0.00436795, 0.985716, -0.168361, 0.00146871, 0.168356, 0.985725, 0.0729895, 1.20308, 0.00446881)
+
+[node name="rig04_0001_IKcvOffsetSpine22_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKHandle/rig04_0001_IKHandleFollowMain" index="3"]
+transform = Transform3D(0.999989, -0.00455287, -0.000712361, 0.00436795, 0.985716, -0.168361, 0.00146871, 0.168356, 0.985725, 0.072751, 1.25298, 0.0184528)
+
+[node name="rig04_0001_IKcvOffsetSpine23_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKHandle/rig04_0001_IKHandleFollowMain" index="4"]
+transform = Transform3D(0.999989, -0.00455287, -0.000712361, 0.00436795, 0.985716, -0.168361, 0.00146871, 0.168356, 0.985725, 0.0725125, 1.30288, 0.0324367)
+
+[node name="rig04_0001_IKcvOffsetSpine24_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKHandle/rig04_0001_IKHandleFollowMain" index="5"]
+transform = Transform3D(0.999989, -0.00455287, -0.000712361, 0.00436795, 0.985716, -0.168361, 0.00146871, 0.168356, 0.985725, 0.0723244, 1.34734, 0.0282842)
+
+[node name="rig04_0001_IKcvOffsetSpine25_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKHandle/rig04_0001_IKHandleFollowMain" index="6"]
+transform = Transform3D(0.999989, -0.00455287, -0.000712361, 0.00436795, 0.985716, -0.168361, 0.00146871, 0.168356, 0.985725, 0.0721363, 1.39179, 0.0241316)
+
+[node name="rig04_0001_IKOffsetSpine22_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKHandle/rig04_0001_IKHandleFollowMain" index="7"]
+transform = Transform3D(0.999989, -0.00455287, -0.000712361, 0.00436795, 0.985716, -0.168361, 0.00146871, 0.168356, 0.985725, 0.0725642, 1.29249, 0.0280976)
+
+[node name="rig04_0001_IKOffsetConstrainedSpine21_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKHandle/rig04_0001_IKHandleFollowMain" index="8"]
+transform = Transform3D(0.999989, -0.00455287, -0.000712361, 0.00436795, 0.985716, -0.168361, 0.00146871, 0.168356, 0.985725, 0.073228, 1.15318, -0.00951516)
+
+[node name="rig04_0001_IKFollowEndSpine21_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKHandle/rig04_0001_IKHandleFollowMain/rig04_0001_IKFollowEndSpine2_M" index="0"]
+transform = Transform3D(0.999989, -0.00455287, -0.000712361, 0.00436795, 0.985716, -0.168361, 0.00146871, 0.168356, 0.985725, 0.073228, 1.15318, -0.00951516)
+
+[node name="rig04_0001_IKFollowEndSpine23_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKHandle/rig04_0001_IKHandleFollowMain/rig04_0001_IKFollowEndSpine2_M" index="1"]
+transform = Transform3D(0.999989, -0.00455287, -0.000712361, 0.00436795, 0.985716, -0.168361, 0.00146871, 0.168356, 0.985725, 0.0719482, 1.43625, 0.0199791)
+
+[node name="rig04_0001_IKLeg_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKHandle/rig04_0001_IKHandleFollowMain/rig04_0001_IKOffsetLeg_R/rig04_0001_IKExtraLeg_R" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="rig04_0001_PoleOffsetLeg_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKHandle/rig04_0001_IKHandleFollowMain" index="11"]
+transform = Transform3D(0.968549, 0.100293, -0.227713, -0.0876783, 0.994034, 0.064878, 0.232862, -0.042872, 0.971564, -0.0539055, 0.765224, 0.922498)
+
+[node name="rig04_0001_PoleLeg_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKHandle/rig04_0001_IKHandleFollowMain/rig04_0001_PoleOffsetLeg_R/rig04_0001_PoleExtraLeg_R" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="rig04_0001_PoleAimLeg_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKHandle/rig04_0001_IKHandleFollowMain" index="12"]
+transform = Transform3D(-0.204253, -0.211964, -0.955695, -0.978855, 0.0553819, 0.196919, 0.0111884, 0.975707, -0.218794, 0.0851077, 1.12766, -0.0262793)
+
+[node name="rig04_0001_IKLeg_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKHandle/rig04_0001_IKHandleFollowMain/rig04_0001_IKOffsetLeg_L/rig04_0001_IKExtraLeg_L" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="rig04_0001_PoleOffsetLeg_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKHandle/rig04_0001_IKHandleFollowMain" index="16"]
+transform = Transform3D(0.957379, -0.00526335, 0.288785, -0.0091456, 0.99878, 0.0485231, -0.288688, -0.0490961, 0.956164, 0.242804, 0.759477, 0.91735)
+
+[node name="rig04_0001_PoleLeg_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKHandle/rig04_0001_IKHandleFollowMain/rig04_0001_PoleOffsetLeg_L/rig04_0001_PoleExtraLeg_L" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="rig04_0001_PoleAimLeg_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKHandle/rig04_0001_IKHandleFollowMain" index="17"]
+transform = Transform3D(-0.1082, -0.272451, -0.956066, 0.994064, -0.0406427, -0.100918, -0.0113619, -0.961311, 0.275232, 0.0851077, 1.12766, -0.0262793)
+
+[node name="rig04_0001_IKOffsetArm_RFollowNoScaleOffset" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKFollow" index="0"]
+transform = Transform3D(-0.918545, -0.086096, -0.385826, -0.331052, -0.365883, 0.86979, -0.216053, 0.92667, 0.307578, 0.0271875, 1.46671, 0.0536333)
+
+[node name="rig04_0001_IKOffsetArm_RFollow" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKFollow/rig04_0001_IKOffsetArm_RFollowOffset" index="0"]
+transform = Transform3D(0.985849, -0.0225044, 0.166116, 0.0812108, 0.931014, -0.355834, -0.146649, 0.364289, 0.919667, 0.0808935, -0.055874, -0.0143012)
+
+[node name="rig04_0001_IKhybridFollowSpine21_MFollowNoScaleOffset" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKFollow" index="4"]
+transform = Transform3D(0.999989, -0.00455287, -0.000712361, 0.00436795, 0.985716, -0.168361, 0.00146871, 0.168356, 0.985725, 0.073228, 1.15318, -0.00951516)
+
+[node name="rig04_0001_IKhybridFollowSpine21_MFollow" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKFollow/rig04_0001_IKhybridFollowSpine21_MFollowOffset" index="0"]
+transform = Transform3D(0.985715, -0.16836, 0.00449689, 0.168357, 0.985726, 0.001007, -0.00460224, -0.000235531, 0.999989, -0.0355736, 0.00371568, 0.073228)
+
+[node name="rig04_0001_PoleOffsetLeg_RFollowNoScaleOffset" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKFollow" index="6"]
+transform = Transform3D(-0.204253, -0.211964, -0.955695, -0.978855, 0.0553819, 0.196919, 0.0111884, 0.975707, -0.218794, 0.0851077, 1.12766, -0.0262793)
+
+[node name="rig04_0001_PoleOffsetLeg_RFollow" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKFollow/rig04_0001_PoleOffsetLeg_RFollowOffset" index="0"]
+transform = Transform3D(0.968549, 0.100293, -0.227713, -0.0876783, 0.994034, 0.064878, 0.232862, -0.042872, 0.971564, -0.171978, -0.00883156, 0.00207412)
+
+[node name="rig04_0001_IKOffsetArm_LFollowNoScaleOffset" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKFollow" index="8"]
+transform = Transform3D(-0.92014, -0.0865393, -0.381908, 0.327392, 0.365069, -0.871516, 0.214843, -0.92695, -0.307583, 0.116342, 1.4671, 0.0537642)
+
+[node name="rig04_0001_IKOffsetArm_LFollow" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKFollow/rig04_0001_IKOffsetArm_LFollowOffset" index="0"]
+transform = Transform3D(0.986006, 0.0182739, -0.165703, -0.0770969, 0.931279, -0.356057, 0.14781, 0.36385, 0.919655, 0.0642576, -0.0546646, -0.0137458)
+
+[node name="rig04_0001_PoleOffsetLeg_LFollowNoScaleOffset" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKFollow" index="12"]
+transform = Transform3D(-0.1082, -0.272451, -0.956066, 0.994064, -0.0406427, -0.100918, -0.0113619, -0.961311, 0.275232, 0.0851077, 1.12766, -0.0262793)
+
+[node name="rig04_0001_PoleOffsetLeg_LFollow" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKFollow/rig04_0001_PoleOffsetLeg_LFollowOffset" index="0"]
+transform = Transform3D(0.957379, -0.00526335, 0.288785, -0.0091456, 0.99878, 0.0485231, -0.288688, -0.0490961, 0.956164, 0.360876, -0.014578, -0.00307377)
+
+[node name="rig04_0001_IKmessureLoc1Arm_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKMessure" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0235621, 1.4486, 0.0417831)
+
+[node name="rig04_0001_IKmessureLoc2Arm_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKMessure/rig04_0001_IKmessureLoc1Arm_R" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.243735, -0.289504, -0.0923188)
+
+[node name="rig04_0001_IKmessureLoc1Leg_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKMessure" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0127153, 1.08421, -0.0444096)
+
+[node name="rig04_0001_IKmessureLoc2Leg_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKMessure/rig04_0001_IKmessureLoc1Leg_R" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.121983, -0.888043, 0.0287769)
+
+[node name="rig04_0001_IKmessureLoc1Arm_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKMessure" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16718, 1.44921, 0.041966)
+
+[node name="rig04_0001_IKmessureLoc2Arm_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKMessure/rig04_0001_IKmessureLoc1Arm_L" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.100117, -0.290115, -0.0925018)
+
+[node name="rig04_0001_IKmessureLoc1Leg_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKMessure" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.168353, 1.10777, -0.0377688)
+
+[node name="rig04_0001_IKmessureLoc2Leg_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_IKSystem/rig04_0001_IKMessure/rig04_0001_IKmessureLoc1Leg_L" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0181437, -0.911604, 0.0221362)
+
+[node name="rig04_0001_FKIKParentConstraintArm_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKIKSystem" index="0"]
+transform = Transform3D(-0.918545, -0.086096, -0.385826, -0.331052, -0.365883, 0.86979, -0.216053, 0.92667, 0.307578, 0.0271875, 1.46671, 0.0536333)
+
+[node name="rig04_0001_FKIKArm_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKIKSystem/rig04_0001_FKIKParentConstraintArm_R" index="0"]
+transform = Transform3D(-0.900749, -0.366249, -0.233482, -0.250486, -0.00112951, 0.96812, -0.354836, 0.930516, -0.0907227, 0.186243, 0.0697103, -0.00481354)
+
+[node name="rig04_0001_FKIKParentConstraintLeg_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKIKSystem" index="1"]
+transform = Transform3D(-0.155371, -0.000235051, 0.987856, 0.951219, -0.269851, 0.149544, 0.266539, 0.962902, 0.0421506, 0.0851077, 1.12766, -0.0262793)
+
+[node name="rig04_0001_FKIKLeg_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKIKSystem/rig04_0001_FKIKParentConstraintLeg_R" index="0"]
+transform = Transform3D(1.30661e-07, 0.994589, 0.103885, -9.08196e-09, -0.103885, 0.994589, 1, -1.30898e-07, -4.54098e-09, -0.13184, 0.0415525, -0.20934)
+
+[node name="rig04_0001_FKIKParentConstraintSpine2_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKIKSystem" index="2"]
+transform = Transform3D(-0.155371, -0.000235051, 0.987856, 0.951219, -0.269851, 0.149544, 0.266539, 0.962902, 0.0421506, 0.0851077, 1.12766, -0.0262793)
+
+[node name="rig04_0001_FKIKSpine2_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKIKSystem/rig04_0001_FKIKParentConstraintSpine2_M" index="0"]
+transform = Transform3D(1.30661e-07, 0.994589, 0.103885, -9.08196e-09, -0.103885, 0.994589, 1, -1.30898e-07, -4.54098e-09, 0.105838, 0, 0.238104)
+
+[node name="rig04_0001_FKIKParentConstraintArm_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKIKSystem" index="3"]
+transform = Transform3D(-0.92014, -0.0865393, -0.381908, 0.327392, 0.365069, -0.871516, 0.214843, -0.92695, -0.307583, 0.116342, 1.4671, 0.0537642)
+
+[node name="rig04_0001_FKIKArm_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKIKSystem/rig04_0001_FKIKParentConstraintArm_L" index="0"]
+transform = Transform3D(-0.900749, 0.366249, 0.233482, -0.250486, 0.00112952, -0.96812, -0.354836, -0.930516, 0.0907227, -0.186243, -0.0697103, 0.00481354)
+
+[node name="rig04_0001_FKIKParentConstraintLeg_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKIKSystem" index="4"]
+transform = Transform3D(-0.155371, -0.000235051, 0.987856, 0.951219, -0.269851, 0.149544, 0.266539, 0.962902, 0.0421506, 0.0851077, 1.12766, -0.0262793)
+
+[node name="rig04_0001_FKIKLeg_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_FKIKSystem/rig04_0001_FKIKParentConstraintLeg_L" index="0"]
+transform = Transform3D(1.30661e-07, 0.994589, 0.103885, -9.08196e-09, -0.103885, 0.994589, 1, -1.30898e-07, -4.54098e-09, -0.13184, 0.0415525, 0.20934)
+
+[node name="rig04_0001_AimFollowEye" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_AimSystem/rig04_0001_AimEye/rig04_0001_AimOffsetEye" index="0"]
+transform = Transform3D(0.999898, 0.0107667, -0.00937633, -0.0112376, 0.998599, -0.0517105, 0.00880643, 0.0518106, 0.998618, 0.0689505, -0.0747495, 0.133893)
+
+[node name="rig04_0001_AimFollowOnEye" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_AimSystem/rig04_0001_AimEye/rig04_0001_AimOffsetEye" index="1"]
+transform = Transform3D(0.999898, 0.0107667, -0.00937633, -0.0112376, 0.998599, -0.0517105, 0.00880643, 0.0518106, 0.998618, 0.0689505, -0.0747495, 0.133893)
+
+[node name="rig04_0001_LegLockConstrained" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_RootSystem" index="1"]
+transform = Transform3D(-0.155371, -0.000235051, 0.987856, 0.951219, -0.269851, 0.149544, 0.266539, 0.962902, 0.0421506, 0.0851077, 1.12766, -0.0262793)
+
+[node name="rig04_0001_RootX_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_RootSystem/rig04_0001_RootCenterBtwLegsBlended_M/rig04_0001_RootOffsetX_M/rig04_0001_RootExtraX_M" index="0"]
+transform = Transform3D(0.999989, -0.00455287, -0.000712361, 0.00436795, 0.985716, -0.168361, 0.00146871, 0.168356, 0.985725, 0.073228, -0.0357672, 0)
+
+[node name="rig04_0001_TwistFollowHead_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowOffsetHead_M" index="0"]
+transform = Transform3D(0.998628, -0.0517135, -0.00822386, 0.0518076, 0.998589, 0.0116707, 0.00760872, -0.0120808, 0.999898, -0.020652, 0.146025, 0.0711784)
+
+[node name="rig04_0001_TwistFollowParentHead_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetHead_M" index="0"]
+transform = Transform3D(0.942796, -0.333347, 0.00378429, 0.333339, 0.942803, 0.00262968, -0.00444444, -0.0012178, 0.999989, -0.0910548, 0.0784156, 0.0716168)
+
+[node name="rig04_0001_TwistFollowSpine22_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowOffsetSpine22_M" index="0"]
+transform = Transform3D(0.985715, -0.16836, 0.00449689, 0.168357, 0.985726, 0.001007, -0.00460224, -0.000235531, 0.999989, -0.0375022, 0.0280276, 0.0725642)
+
+[node name="rig04_0001_TwistFollowParentSpine22_M" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetSpine22_M" index="0"]
+transform = Transform3D(0.985715, -0.16836, 0.00449689, 0.168357, 0.985726, 0.001007, -0.00460224, -0.000235531, 0.999989, -0.0375022, 0.0280276, 0.0725642)
+
+[node name="rig04_0001_TwistFollowWrist_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowOffsetWrist_R" index="0"]
+transform = Transform3D(0.99962, 0.00384395, 0.0273086, -0.0118082, 0.954531, 0.297875, -0.0249219, -0.298084, 0.954214, 0.0072053, -0.0769451, -0.0478649)
+
+[node name="rig04_0001_TwistFollowParentWrist_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetWrist_R" index="0"]
+transform = Transform3D(0.983544, 0.124669, 0.130759, -0.158138, 0.944058, 0.289391, -0.0873658, -0.305307, 0.948237, 0.0184232, 0.0612443, -0.0672169)
+
+[node name="Skeleton3D" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetWrist_R/rig04_0001_TwistFollowParentWrist_R" index="0"]
+bones/0/rotation = Quaternion(0.623294, -0.0451475, 0.0822911, 0.776334)
+bones/2/rotation = Quaternion(0.00774047, 0, 0, 0.99997)
+bones/4/rotation = Quaternion(0.00258612, 0, 0, 0.999997)
+bones/5/rotation = Quaternion(0.00516034, 0, 0, 0.999987)
+
+[node name="rig04_0001_TwistFollowElbow_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowOffsetElbow_R" index="0"]
+transform = Transform3D(0.983544, 0.124669, 0.130759, -0.158138, 0.944058, 0.289391, -0.0873658, -0.305307, 0.948237, 0.0184232, 0.0612443, -0.0672169)
+
+[node name="rig04_0001_TwistFollowParentElbow_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetElbow_R" index="0"]
+transform = Transform3D(0.945515, 0.248007, 0.210934, -0.302443, 0.908922, 0.287035, -0.120536, -0.335192, 0.934407, 0.0179964, 0.124438, -0.04297)
+
+[node name="Skeleton3D" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetElbow_R/rig04_0001_TwistFollowParentElbow_R" index="0"]
+bones/0/rotation = Quaternion(0.00646451, -0.0707419, 0.150167, 0.986105)
+bones/2/rotation = Quaternion(-0.00722856, 0, 0, 0.999974)
+bones/4/rotation = Quaternion(0.000170639, 0, 0, 1)
+bones/5/rotation = Quaternion(0.000341278, 0, 0, 1)
+
+[node name="rig04_0001_TwistFollowShoulder_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowOffsetShoulder_R" index="0"]
+transform = Transform3D(0.945515, 0.248007, 0.210934, -0.302443, 0.908922, 0.287035, -0.120536, -0.335192, 0.934407, 0.0179964, 0.124438, -0.04297)
+
+[node name="rig04_0001_TwistFollowParentShoulder_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetShoulder_R" index="0"]
+transform = Transform3D(0.99907, -0.00480584, -0.0428407, 0.0212919, 0.919106, 0.393434, 0.0374844, -0.39398, 0.918355, -0.060037, 0.0683445, -0.0980913)
+
+[node name="Skeleton3D" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetShoulder_R/rig04_0001_TwistFollowParentShoulder_R" index="0"]
+bones/0/rotation = Quaternion(-0.323798, 0.326828, 0.094038, 0.882891)
+bones/2/rotation = Quaternion(-0.001399, 0, 0, 0.999999)
+bones/5/rotation = Quaternion(-0.00102709, 0, 0, 0.999999)
+
+[node name="rig04_0001_TwistFollowKnee_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowOffsetKnee_R" index="0"]
+transform = Transform3D(0.975638, 0.204664, -0.0790106, -0.219324, 0.90134, -0.373474, -0.00522145, 0.381704, 0.92427, 0.0139567, 0.125461, 0.0028898)
+
+[node name="rig04_0001_TwistFollowParentKnee_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetKnee_R" index="0"]
+transform = Transform3D(0.904743, -0.40677, -0.126407, 0.340159, 0.868575, -0.360375, 0.256384, 0.283048, 0.924203, 0.0670116, -0.00995811, -0.0970587)
+
+[node name="Skeleton3D" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetKnee_R/rig04_0001_TwistFollowParentKnee_R" index="0"]
+bones/0/rotation = Quaternion(-1.49856e-11, 3.81116e-11, -0.365927, 0.930644)
+
+[node name="rig04_0001_TwistFollowHip_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowOffsetHip_R" index="0"]
+transform = Transform3D(0.904743, -0.40677, -0.126407, 0.340159, 0.868575, -0.360375, 0.256384, 0.283048, 0.924203, 0.0670116, -0.00995811, -0.0970587)
+
+[node name="rig04_0001_TwistFollowParentHip_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetHip_R" index="0"]
+transform = Transform3D(0.973761, -0.16836, 0.153114, 0.166279, 0.985726, 0.0263871, -0.155371, -0.000235038, 0.987856, -0.0626975, -0.0103066, 0.0851077)
+
+[node name="Skeleton3D" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetHip_R/rig04_0001_TwistFollowParentHip_R" index="0"]
+bones/0/rotation = Quaternion(0.350844, 0.911135, 0.0888352, 0.197104)
+bones/2/rotation = Quaternion(0.144213, 0, 0, 0.989547)
+bones/4/rotation = Quaternion(0.0482017, 0, 0, 0.998838)
+bones/5/rotation = Quaternion(0.0969322, 0, 0, 0.995291)
+
+[node name="rig04_0001_TwistFollowWrist_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowOffsetWrist_L" index="0"]
+transform = Transform3D(0.997491, 0.016373, 0.0688702, -0.0412969, 0.924771, 0.378277, -0.0574956, -0.380172, 0.923127, -0.0751916, -0.016571, -0.0299346)
+
+[node name="rig04_0001_TwistFollowParentWrist_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetWrist_L" index="0"]
+transform = Transform3D(0.983182, 0.0906275, 0.158554, -0.144681, 0.916316, 0.373405, -0.111444, -0.390065, 0.914019, -0.0750102, 0.00171382, -0.0497246)
+
+[node name="Skeleton3D" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetWrist_L/rig04_0001_TwistFollowParentWrist_L" index="0"]
+bones/0/rotation = Quaternion(0.623294, -0.0451475, 0.0822911, 0.776334)
+bones/2/rotation = Quaternion(0.00774047, 0, 0, 0.99997)
+bones/4/rotation = Quaternion(0.00258612, 0, 0, 0.999997)
+bones/5/rotation = Quaternion(0.00516034, 0, 0, 0.999987)
+
+[node name="rig04_0001_TwistFollowElbow_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowOffsetElbow_L" index="0"]
+transform = Transform3D(0.983182, 0.0906275, 0.158554, -0.144681, 0.916316, 0.373405, -0.111444, -0.390065, 0.914019, -0.0750102, 0.00171382, -0.0497246)
+
+[node name="rig04_0001_TwistFollowParentElbow_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetElbow_L" index="0"]
+transform = Transform3D(0.945708, 0.250292, 0.207341, -0.303425, 0.908538, 0.287214, -0.116489, -0.334533, 0.935156, -0.0850037, -0.072957, -0.0731605)
+
+[node name="Skeleton3D" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetElbow_L/rig04_0001_TwistFollowParentElbow_L" index="0"]
+bones/0/rotation = Quaternion(0.00511819, -0.0560089, 0.161924, 0.985199)
+bones/2/rotation = Quaternion(-0.0550224, 0, 0, 0.998485)
+bones/4/rotation = Quaternion(-0.0157692, 0, 0, 0.999876)
+bones/5/rotation = Quaternion(-0.0315346, 0, 0, 0.999503)
+
+[node name="rig04_0001_TwistFollowShoulder_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowOffsetShoulder_L" index="0"]
+transform = Transform3D(0.945708, 0.250292, 0.207341, -0.303425, 0.908538, 0.287214, -0.116489, -0.334533, 0.935156, -0.0850037, -0.072957, -0.0731605)
+
+[node name="rig04_0001_TwistFollowParentShoulder_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetShoulder_L" index="0"]
+transform = Transform3D(0.998883, -0.00476987, -0.0470033, 0.022858, 0.919487, 0.392455, 0.0413469, -0.393091, 0.918569, -0.0690739, -0.104423, 0.0468113)
+
+[node name="Skeleton3D" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetShoulder_L/rig04_0001_TwistFollowParentShoulder_L" index="0"]
+bones/0/rotation = Quaternion(-0.323798, 0.326828, 0.094038, 0.882891)
+bones/2/rotation = Quaternion(-0.001399, 0, 0, 0.999999)
+bones/5/rotation = Quaternion(-0.00102709, 0, 0, 0.999999)
+
+[node name="rig04_0001_TwistFollowKnee_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowOffsetKnee_L" index="0"]
+transform = Transform3D(0.980222, 0.194782, 0.0349856, -0.167384, 0.910334, -0.378517, -0.105577, 0.365175, 0.924933, -0.0146209, -0.0789759, -0.135649)
+
+[node name="rig04_0001_TwistFollowParentKnee_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetKnee_L" index="0"]
+transform = Transform3D(0.94308, -0.332284, -0.0136749, 0.302498, 0.874176, -0.379883, 0.138184, 0.354124, 0.924933, -0.0467847, 0.0414657, -0.0817794)
+
+[node name="Skeleton3D" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetKnee_L/rig04_0001_TwistFollowParentKnee_L" index="0"]
+bones/0/rotation = Quaternion(-1.58269e-11, 3.7876e-11, -0.320957, 0.947094)
+
+[node name="rig04_0001_TwistFollowHip_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowOffsetHip_L" index="0"]
+transform = Transform3D(0.94308, -0.332284, -0.0136749, 0.302498, 0.874176, -0.379883, 0.138184, 0.354124, 0.924933, -0.0467847, 0.0414657, -0.0817794)
+
+[node name="rig04_0001_TwistFollowParentHip_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetHip_L" index="0"]
+transform = Transform3D(0.973761, -0.16836, 0.153114, 0.166279, 0.985726, 0.0263871, -0.155371, -0.000235038, 0.987856, -0.0626975, -0.0103066, 0.0851077)
+
+[node name="Skeleton3D" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem/rig04_0001_TwistFollowParentOffsetHip_L/rig04_0001_TwistFollowParentHip_L" index="0"]
+bones/0/rotation = Quaternion(0.936231, -0.334061, -0.0180088, 0.107475)
+bones/2/rotation = Quaternion(0.22911, 0, 0, 0.973401)
+bones/4/rotation = Quaternion(0.0763309, 0, 0, 0.997083)
+bones/5/rotation = Quaternion(0.153429, 0, 0, 0.98816)
+
+[node name="rig04_0001_FKIKMixWrist_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem" index="24"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.192081, 1.10897, -0.0601903)
+
+[node name="rig04_0001_FKIKMixElbow_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem" index="25"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.115304, 1.28913, -0.0396275)
+
+[node name="rig04_0001_FKIKMixKnee_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem" index="26"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0610823, 0.745385, 0.133713)
+
+[node name="rig04_0001_FKIKMixWrist_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem" index="27"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.331432, 1.10781, -0.0595663)
+
+[node name="rig04_0001_FKIKMixElbow_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem" index="28"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259665, 1.29006, -0.0392458)
+
+[node name="rig04_0001_FKIKMixKnee_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_TwistSystem" index="29"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20064, 0.751521, 0.117214)
+
+[node name="rig04_0001_Fingers_R" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_DrivingSystem" index="0"]
+transform = Transform3D(-0.359588, 0.434226, -0.825919, -0.931956, -0.123106, 0.341031, 0.0464091, 0.892352, 0.448947, -0.192081, 1.10897, -0.0601903)
+
+[node name="rig04_0001_Fingers_L" parent="rig04_0001_Group/rig04_0001_MotionSystem/rig04_0001_DrivingSystem" index="1"]
+transform = Transform3D(0.320981, 0.511816, 0.796879, -0.946067, 0.134244, 0.294851, 0.0439335, -0.848542, 0.527301, 0.331432, 1.10781, -0.0595663)
+
+[node name="Skeleton3D" parent="rig04_0001_Group/rig04_0001_DeformationSystem" index="0"]
+bones/0/position = Vector3(0.0851077, 1.12766, -0.0262793)
+bones/0/rotation = Quaternion(0.517767, 0.459176, 0.605676, 0.392724)
+bones/1/rotation = Quaternion(-0.00644074, -0.0377661, 0.0564982, 0.997667)
+bones/2/rotation = Quaternion(-0.00107594, -0.037812, 0.0284232, 0.99888)
+bones/6/rotation = Quaternion(3.23129e-27, 8.79019e-18, 0.00837966, 0.999965)
+bones/8/rotation = Quaternion(-0.00232397, 0, 0, 0.999997)
+bones/9/rotation = Quaternion(-0.00232397, 0, 0, 0.999997)
+bones/10/rotation = Quaternion(-0.000549397, -0.00758072, 0.143012, 0.989692)
+bones/18/rotation = Quaternion(-0.14024, 0.819218, 0.042226, 0.554465)
+bones/19/rotation = Quaternion(-0.323798, 0.326828, 0.094038, 0.882891)
+bones/22/rotation = Quaternion(0.00564592, -0.0696134, 0.150454, 0.986147)
+bones/23/rotation = Quaternion(0.000170639, -2.37895e-25, 3.65527e-26, 1)
+bones/24/rotation = Quaternion(0.000170639, -2.37895e-25, 3.65527e-26, 1)
+bones/25/rotation = Quaternion(0.623471, -0.0437091, 0.0829773, 0.776201)
+bones/26/rotation = Quaternion(-0.0807188, 0.116828, -0.00356722, 0.98986)
+bones/31/rotation = Quaternion(0.0200077, 0.0787723, -0.0630711, 0.994694)
+bones/34/rotation = Quaternion(0.0452314, -0.0503824, -0.0192451, 0.99752)
+bones/35/rotation = Quaternion(-0.0397791, 0.140037, -0.060954, 0.987467)
+bones/39/rotation = Quaternion(-0.10459, -0.0114365, -0.0707158, 0.991932)
+bones/40/rotation = Quaternion(0.0321104, 0.212186, -0.039683, 0.975895)
+bones/43/rotation = Quaternion(0.0138397, 0.105461, -0.0242236, 0.994032)
+bones/47/rotation = Quaternion(0.820606, 0.140311, -0.552418, 0.0418689)
+bones/48/rotation = Quaternion(-0.323798, 0.326828, 0.094038, 0.882891)
+bones/51/rotation = Quaternion(0.00466111, -0.0559338, 0.16195, 0.985201)
+bones/52/rotation = Quaternion(-0.0157692, -2.58494e-26, -8.01331e-25, 0.999876)
+bones/53/rotation = Quaternion(-0.0157692, -2.58494e-26, -8.01331e-25, 0.999876)
+bones/54/rotation = Quaternion(0.61108, -0.0424283, 0.0836426, 0.785993)
+bones/55/rotation = Quaternion(-0.235233, 0.0710939, 0.0165718, 0.969194)
+bones/56/rotation = Quaternion(-0.0597138, 0.153175, -0.0043424, 0.986384)
+bones/60/rotation = Quaternion(0.025665, 0.0813896, -0.144893, 0.98576)
+bones/63/rotation = Quaternion(-0.267327, -0.016449, 0.114452, 0.956643)
+bones/64/rotation = Quaternion(-0.0905877, 0.183352, 0.000838975, 0.978864)
+bones/68/rotation = Quaternion(-0.026738, -0.0279806, -0.0732167, 0.996565)
+bones/69/rotation = Quaternion(0.0118888, 0.151984, -0.077615, 0.985259)
+bones/72/rotation = Quaternion(-0.0647317, 0.0463123, -0.0430203, 0.995899)
+bones/76/rotation = Quaternion(0.350844, 0.911135, 0.0888352, 0.197104)
+bones/77/rotation = Quaternion(0.0482017, 3.87741e-26, 5.493e-26, 0.998838)
+bones/78/rotation = Quaternion(0.0482017, 3.87741e-26, 5.493e-26, 0.998838)
+bones/79/rotation = Quaternion(0.0448343, 0.0176288, -0.365502, 0.929563)
+bones/80/rotation = Quaternion(0.0179051, 0.0674597, 0.121192, 0.990172)
+bones/83/rotation = Quaternion(0.930993, -0.329678, -0.122825, 0.0973561)
+bones/84/position = Vector3(-0.127238, -0.00425505, 0.0260442)
+bones/84/rotation = Quaternion(0.102864, 0.101899, 0.00595309, 0.989444)
+bones/85/rotation = Quaternion(0.0763309, -5.16988e-26, -7.75482e-26, 0.997083)
+bones/86/rotation = Quaternion(0.0731042, 0.024774, -0.319999, 0.944268)
+bones/87/rotation = Quaternion(0.0515274, 0.0138871, 0.116942, 0.991704)
+bones/88/rotation = Quaternion(0.00742529, -0.00419191, 0.491596, 0.870782)
+
+[node name="rig04_0001_Geometry" parent="rig04_0001_Group" index="3"]
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"player_anim": SubResource("AnimationLibrary_4patd")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_4patd")
+anim_player = NodePath("../AnimationPlayer")
+parameters/state_anim/current_state = "idle"
+parameters/state_anim/transition_request = 1.3
+parameters/state_anim/current_index = 1.09202
