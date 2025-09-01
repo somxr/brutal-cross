@@ -20,6 +20,10 @@ var current_angular_speed : float
 # Different types of velocities get decided if you're turning or moving straight, only gets applied in the end of the movement function
 var current_velocity : Vector3
 
+# Animation state properties for visual
+var turning_direction: String = "straight"
+var is_gliding: bool = false
+
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func check_transition(input: InputPackage) -> String:
@@ -38,7 +42,7 @@ func update(input: InputPackage, delta: float):
 func enter_state():
 	pass	
 func exit_state():
-	pass
+	is_gliding = false
 
 func rotate_velocity(input: InputPackage, delta: float):
 	var facing_direction := visual.basis.z
@@ -47,11 +51,14 @@ func rotate_velocity(input: InputPackage, delta: float):
 	var angle : float = facing_direction.signed_angle_to(Vector3(input.input_direction.x,0,input.input_direction.y), Vector3.UP) 
 	
 	var direction = Vector3(input.input_direction.x,0,input.input_direction.y) 
-	
 	if input.input_direction:
+		is_gliding = false
 		#Sample current angular speed from a pre-defined curve, Takes speed as input, and outputs appropriate angular speed 			
 		current_angular_speed = angular_speed_curve.sample(current_speed)
-		
+		#print("angle in degree: ", abs(rad_to_deg(angle)))
+		if abs(rad_to_deg(angle)) > 0.1:
+			turning_direction = "left" if sign(angle) > 0 else "right" 
+		print(turning_direction)
 		#if angle is bigger than angular speed
 		if abs(angle) >= current_angular_speed * delta:
 			# Rotate the velocity vector by angular speed each frame. So the turning is gradual. Sign(angle) just decides if clockwise or anti.
@@ -61,10 +68,15 @@ func rotate_velocity(input: InputPackage, delta: float):
 			current_velocity = facing_direction.rotated(Vector3.UP, sign(angle) * current_angular_speed * delta) * current_speed
 		else:
 			#else rotate it by the angle. If the turn is even smaller than the angular speed then just turn it directly by that tiny bit?
+			turning_direction = "straight"
 			current_speed = move_toward(current_speed,TOP_SPEED, ACCELERATION*delta)
 			current_velocity = facing_direction.rotated(Vector3.UP, angle) * current_speed
 	else:
 			# if no input_direction, then decelerate to zero and bring back all the calculation variables to zero to reset them.
+			if not player.velocity.is_equal_approx(Vector3.ZERO):
+				is_gliding = true
+
+			turning_direction = "straight"
 			current_speed = move_toward(current_speed, 0.0, DECELERATION*delta)
 			current_velocity = current_velocity.move_toward(Vector3.ZERO, DECELERATION*delta)
 	
