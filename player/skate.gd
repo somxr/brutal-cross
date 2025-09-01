@@ -19,10 +19,13 @@ var current_speed : float
 var current_angular_speed : float
 # Different types of velocities get decided if you're turning or moving straight, only gets applied in the end of the movement function
 var current_velocity : Vector3
+# ############################################################
 
 # Animation state properties for visual
 var turning_direction: String = "straight"
 var is_gliding: bool = false
+var current_turn_blend_value : float = 0.0
+# ########################################
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -52,14 +55,21 @@ func rotate_velocity(input: InputPackage, delta: float):
 	
 	var direction = Vector3(input.input_direction.x,0,input.input_direction.y) 
 	if input.input_direction:
+		
+		# Skate state animation tree values ##################################
 		is_gliding = false
-		#Sample current angular speed from a pre-defined curve, Takes speed as input, and outputs appropriate angular speed 			
-		current_angular_speed = angular_speed_curve.sample(current_speed)
-		#print("angle in degree: ", abs(rad_to_deg(angle)))
+				#print("angle in degree: ", abs(rad_to_deg(angle)))
 		if abs(rad_to_deg(angle)) > 0.5:
 			turning_direction = "left" if sign(angle) > 0 else "right" 
 		else:
 			turning_direction = "straight"
+			
+		var target_blend_value = remap(clamp(angle,-0.2,0.2), -0.2, 0.2, -0.5, 0.5)
+		current_turn_blend_value = move_toward(current_turn_blend_value, target_blend_value, 1.0 * delta)
+		# #####################################################################
+		
+		#Sample current angular speed from a pre-defined curve, Takes speed as input, and outputs appropriate angular speed 			
+		current_angular_speed = angular_speed_curve.sample(current_speed)	
 		#if angle is bigger than angular speed
 		if abs(angle) >= current_angular_speed * delta:
 			# Rotate the velocity vector by angular speed each frame. So the turning is gradual. Sign(angle) just decides if clockwise or anti.

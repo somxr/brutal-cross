@@ -13,7 +13,7 @@
 
 [sub_resource type="Curve" id="Curve_rgyib"]
 _limits = [0.0, 50.0, 0.0, 8.0]
-_data = [Vector2(0, 38.6697), 0.0, 0.0, 0, 0, Vector2(0.165899, 12.8735), 0.0, 0.0, 0, 0, Vector2(7.98367, 2.96708), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 38.6697), 0.0, 0.0, 0, 0, Vector2(0.174292, 9.64227), 0.0, 0.0, 0, 0, Vector2(7.98257, 2.15872), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6k8r"]
@@ -76,5 +76,5 @@ mesh = SubResource("CapsuleMesh_rgyib")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 6.02127, 7.45014)
-fov = 60.0
+fov = 22.9
 size = 12.154
