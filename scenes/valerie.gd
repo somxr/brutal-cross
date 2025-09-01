@@ -8,16 +8,19 @@ var parent_model : PlayerModel
 var is_skating : float = false
 var is_turning: float = false
 
+var skate_state
 
 func _ready() -> void:
 	#animation_tree.set("parameters/state_anim/transition_request", "idle")
 	parent_model = $"../../Model"
 	
 func _physics_process(delta: float) -> void:
+	
 	if parent_model.current_state == parent_model.states["idle"]:
 		is_skating=false
 		#animation_tree.set("parameters/state_anim/transition_request", "idle")
 	elif parent_model.current_state == parent_model.states["skate"]:
 		is_skating=true
-		var skate_state = parent_model.current_state
+		skate_state = parent_model.current_state
+		print(skate_state.turning_direction)
 		#animation_tree.set("parameters/state_anim/transition_request", "skate")

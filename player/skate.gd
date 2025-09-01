@@ -56,9 +56,10 @@ func rotate_velocity(input: InputPackage, delta: float):
 		#Sample current angular speed from a pre-defined curve, Takes speed as input, and outputs appropriate angular speed 			
 		current_angular_speed = angular_speed_curve.sample(current_speed)
 		#print("angle in degree: ", abs(rad_to_deg(angle)))
-		if abs(rad_to_deg(angle)) > 0.1:
+		if abs(rad_to_deg(angle)) > 0.5:
 			turning_direction = "left" if sign(angle) > 0 else "right" 
-		print(turning_direction)
+		else:
+			turning_direction = "straight"
 		#if angle is bigger than angular speed
 		if abs(angle) >= current_angular_speed * delta:
 			# Rotate the velocity vector by angular speed each frame. So the turning is gradual. Sign(angle) just decides if clockwise or anti.
@@ -68,7 +69,6 @@ func rotate_velocity(input: InputPackage, delta: float):
 			current_velocity = facing_direction.rotated(Vector3.UP, sign(angle) * current_angular_speed * delta) * current_speed
 		else:
 			#else rotate it by the angle. If the turn is even smaller than the angular speed then just turn it directly by that tiny bit?
-			turning_direction = "straight"
 			current_speed = move_toward(current_speed,TOP_SPEED, ACCELERATION*delta)
 			current_velocity = facing_direction.rotated(Vector3.UP, angle) * current_speed
 	else:
@@ -76,7 +76,6 @@ func rotate_velocity(input: InputPackage, delta: float):
 			if not player.velocity.is_equal_approx(Vector3.ZERO):
 				is_gliding = true
 
-			turning_direction = "straight"
 			current_speed = move_toward(current_speed, 0.0, DECELERATION*delta)
 			current_velocity = current_velocity.move_toward(Vector3.ZERO, DECELERATION*delta)
 	
