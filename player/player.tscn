@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bd2hft778ocrh"]
+[gd_scene load_steps=16 format=3 uid="uid://bd2hft778ocrh"]
 
 [ext_resource type="Script" uid="uid://dcs1cqgrekcu3" path="res://player/player.gd" id="1_g1dw6"]
 [ext_resource type="Script" uid="uid://bvetdbdmewvrq" path="res://player/input.gd" id="2_yw30f"]
@@ -8,12 +8,13 @@
 [ext_resource type="Script" uid="uid://d2powumxpfg62" path="res://player/jump.gd" id="6_g6k8r"]
 [ext_resource type="Script" uid="uid://bjpp5mmltfdq0" path="res://player/stop.gd" id="7_rgyib"]
 [ext_resource type="PackedScene" uid="uid://cyenil8j5opgr" path="res://scenes/valerie.tscn" id="8_rgyib"]
+[ext_resource type="PackedScene" uid="uid://dit45cnjx68ie" path="res://scenes/valerie01.tscn" id="9_hg6s5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 
 [sub_resource type="Curve" id="Curve_rgyib"]
 _limits = [0.0, 50.0, 0.0, 8.0]
-_data = [Vector2(0, 38.6697), 0.0, 0.0, 0, 0, Vector2(0.182903, 21.1896), 0.0, 0.0, 0, 0, Vector2(8, 4.53368), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 38.6697), 0.0, 0.0, 0, 0, Vector2(0.114286, 22.1286), 0.0, 0.0, 0, 0, Vector2(7.98367, 2.96708), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6k8r"]
@@ -45,8 +46,8 @@ script = ExtResource("3_g1dw6")
 
 [node name="Skate" type="Node" parent="Model"]
 script = ExtResource("5_qjkh3")
-TOP_SPEED = 8.0
-ACCELERATION = 6.0
+TOP_SPEED = 10.0
+ACCELERATION = 8.0
 DECELERATION = 6.0
 angular_speed_curve = SubResource("Curve_rgyib")
 
@@ -73,6 +74,9 @@ mesh = SubResource("CapsuleMesh_rgyib")
 [node name="visual" type="Node3D" parent="."]
 
 [node name="pc_rig0" parent="visual" instance=ExtResource("8_rgyib")]
+visible = false
+
+[node name="Valerie01" parent="visual" instance=ExtResource("9_hg6s5")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 6.02127, 7.45014)

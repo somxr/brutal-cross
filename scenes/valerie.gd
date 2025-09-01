@@ -5,13 +5,17 @@ extends Node3D
 
 var parent_model : PlayerModel
 
+var is_skating : float = false
+var is_turning: float = false
+
 func _ready() -> void:
-	animation_tree.set("parameters/state_anim/transition_request", "idle")
+	#animation_tree.set("parameters/state_anim/transition_request", "idle")
 	parent_model = $"../../Model"
 	
 func _physics_process(delta: float) -> void:
-	
 	if parent_model.current_state == parent_model.states["idle"]:
-		animation_tree.set("parameters/state_anim/transition_request", "idle")
+		is_skating=false
+		#animation_tree.set("parameters/state_anim/transition_request", "idle")
 	elif parent_model.current_state == parent_model.states["skate"]:
-		animation_tree.set("parameters/state_anim/transition_request", "skate")
+		is_skating=true
+		#animation_tree.set("parameters/state_anim/transition_request", "skate")

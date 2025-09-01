@@ -55,7 +55,7 @@ func rotate_velocity(input: InputPackage, delta: float):
 		#if angle is bigger than angular speed
 		if abs(angle) >= current_angular_speed * delta:
 			# Rotate the velocity vector by angular speed each frame. So the turning is gradual. Sign(angle) just decides if clockwise or anti.
-			# Multiplied by "turn speed" because this is the move speed which you should be moving during a turn.
+			# Multiplied by "speed during turn" because this is the total move speed which you should be moving during a turn.
 			# Remember if there was no turning it would just be velocity = direction.x * TOP_SPEED. If the speed was always the same then SPEED_DURING_TURN here would also just be speed.
 			current_speed = move_toward(current_speed,SPEED_DURING_TURN, ACCELERATION*delta)
 			current_velocity = facing_direction.rotated(Vector3.UP, sign(angle) * current_angular_speed * delta) * current_speed
@@ -67,6 +67,6 @@ func rotate_velocity(input: InputPackage, delta: float):
 			# if no input_direction, then decelerate to zero and bring back all the calculation variables to zero to reset them.
 			current_speed = move_toward(current_speed, 0.0, DECELERATION*delta)
 			current_velocity = current_velocity.move_toward(Vector3.ZERO, DECELERATION*delta)
-	#print("left quick turn")
-	# Calculated velocity will be determined based on the branching of the if statements, whatever it is gets assigned as the final player velocity here		
+	
+	# Final velocity will be determined based on the branching of the if statements, whatever it is gets assigned as the final player velocity here		
 	player.velocity = current_velocity
