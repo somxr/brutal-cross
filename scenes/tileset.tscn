@@ -1,0 +1,34 @@
+[gd_scene load_steps=11 format=3 uid="uid://bii4c5nebuce"]
+
+[ext_resource type="PackedScene" uid="uid://cwrdguddttn7q" path="res://scenes/tileset/column.tscn" id="1_kgrll"]
+[ext_resource type="PackedScene" uid="uid://btp11rualobi6" path="res://scenes/tileset/tile_corner.tscn" id="2_7dthx"]
+[ext_resource type="PackedScene" uid="uid://cqr8qpbwbje2e" path="res://scenes/tileset/tile_edge.tscn" id="3_5iril"]
+[ext_resource type="PackedScene" uid="uid://brirukxre3fw7" path="res://scenes/tileset/tile_mid.tscn" id="4_0khrc"]
+[ext_resource type="PackedScene" uid="uid://c77oke8lm2ngw" path="res://scenes/tileset/wallcorner.tscn" id="5_q86wj"]
+[ext_resource type="PackedScene" uid="uid://2ah1ir8k0jw3" path="res://scenes/tileset/wall_01.tscn" id="6_nhkx3"]
+[ext_resource type="PackedScene" uid="uid://7x6seys4io8o" path="res://scenes/tileset/wall_02.tscn" id="7_wyivv"]
+[ext_resource type="PackedScene" uid="uid://c8mkrgh6da0m" path="res://scenes/tileset/wall_03.tscn" id="8_hffkl"]
+[ext_resource type="PackedScene" uid="uid://dga2aag23q5go" path="res://scenes/tileset/wall_04.tscn" id="9_4b06f"]
+[ext_resource type="PackedScene" uid="uid://mskewsqm7mbw" path="res://scenes/tileset/wall_5.tscn" id="10_icb2p"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="column" parent="." instance=ExtResource("1_kgrll")]
+
+[node name="tile_corner" parent="." instance=ExtResource("2_7dthx")]
+
+[node name="tile_edge" parent="." instance=ExtResource("3_5iril")]
+
+[node name="tile_mid" parent="." instance=ExtResource("4_0khrc")]
+
+[node name="wallcorner" parent="." instance=ExtResource("5_q86wj")]
+
+[node name="wall01" parent="." instance=ExtResource("6_nhkx3")]
+
+[node name="wall02" parent="." instance=ExtResource("7_wyivv")]
+
+[node name="wall03" parent="." instance=ExtResource("8_hffkl")]
+
+[node name="wall04" parent="." instance=ExtResource("9_4b06f")]
+
+[node name="wall5" parent="." instance=ExtResource("10_icb2p")]
