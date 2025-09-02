@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dep14pn0ahs6b"]
+[gd_scene load_steps=3 format=3 uid="uid://vt07xncme1ip"]
 
 [ext_resource type="MeshLibrary" uid="uid://cyprte0xud1p2" path="res://assets/tileset/tileset02.tres" id="1_lhv5s"]
 [ext_resource type="PackedScene" uid="uid://bd2hft778ocrh" path="res://player/player.tscn" id="2_gmwhw"]
