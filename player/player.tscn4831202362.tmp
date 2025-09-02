@@ -1,0 +1,81 @@
+[gd_scene load_steps=15 format=3 uid="uid://bd2hft778ocrh"]
+
+[ext_resource type="Script" uid="uid://dcs1cqgrekcu3" path="res://player/player.gd" id="1_g1dw6"]
+[ext_resource type="Script" uid="uid://bvetdbdmewvrq" path="res://player/input.gd" id="2_yw30f"]
+[ext_resource type="Script" uid="uid://c7vyapbb0k18q" path="res://player/idle.gd" id="3_g1dw6"]
+[ext_resource type="Script" uid="uid://dhhg63qw8jgi" path="res://player/model.gd" id="3_qjkh3"]
+[ext_resource type="Script" uid="uid://cs8klsgmjf1o1" path="res://player/skate.gd" id="5_qjkh3"]
+[ext_resource type="Script" uid="uid://d2powumxpfg62" path="res://player/jump.gd" id="6_g6k8r"]
+[ext_resource type="Script" uid="uid://bjpp5mmltfdq0" path="res://player/stop.gd" id="7_rgyib"]
+[ext_resource type="PackedScene" uid="uid://dit45cnjx68ie" path="res://scenes/valerie01.tscn" id="9_hg6s5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
+
+[sub_resource type="Curve" id="Curve_rgyib"]
+_limits = [0.0, 50.0, 0.0, 10.0]
+_data = [Vector2(0, 38.6697), 0.0, 0.0, 0, 0, Vector2(2.67176, 38.5911), 0.0, -5.521, 0, 1, Vector2(9.26209, 2.20588), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6k8r"]
+albedo_color = Color(0.92, 0.2392, 0.2392, 1)
+roughness = 0.5
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3vyb7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_boad6"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rgyib"]
+material = SubResource("StandardMaterial3D_boad6")
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_g1dw6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_u8vuu")
+
+[node name="Input" type="Node" parent="."]
+script = ExtResource("2_yw30f")
+
+[node name="Model" type="Node" parent="."]
+script = ExtResource("3_qjkh3")
+
+[node name="Idle" type="Node" parent="Model"]
+script = ExtResource("3_g1dw6")
+
+[node name="Skate" type="Node" parent="Model"]
+script = ExtResource("5_qjkh3")
+TOP_SPEED = 12.0
+SPEED_DURING_TURN = 10.0
+ACCELERATION = 10.0
+DECELERATION = 8.0
+angular_speed_curve = SubResource("Curve_rgyib")
+
+[node name="Jump" type="Node" parent="Model"]
+script = ExtResource("6_g6k8r")
+
+[node name="Stop" type="Node" parent="Model"]
+script = ExtResource("7_rgyib")
+metadata/_custom_type_script = "uid://yux7oaahgt20"
+
+[node name="old_visual" type="Node3D" parent="."]
+visible = false
+
+[node name="CapsulMeshInstance3D" type="MeshInstance3D" parent="old_visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_g6k8r")
+mesh = SubResource("CapsuleMesh_3vyb7")
+skeleton = NodePath("../..")
+
+[node name="SphereMeshInstance3D" type="MeshInstance3D" parent="old_visual"]
+transform = Transform3D(-1.50804e-08, -0.345, 0, 0.345, -1.50804e-08, 0, 0, 0, 0.345, 0, 1.47455, 0.424809)
+mesh = SubResource("CapsuleMesh_rgyib")
+
+[node name="visual" type="Node3D" parent="."]
+
+[node name="Valerie01" parent="visual" instance=ExtResource("9_hg6s5")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 6.02127, 7.45014)
+fov = 50.0
+size = 12.154
