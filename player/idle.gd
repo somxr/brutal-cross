@@ -9,8 +9,9 @@ func check_transition(input: InputPackage) -> String:
 	return input.actions[0]
 	
 func update(input: InputPackage, delta: float):
-	if not player.is_on_floor():
-		player.velocity.y -= gravity * delta
+	#if not player.is_on_floor():
+		#player.velocity.y -= gravity * delta
+	pass
 	
 func enter_state():
 	player.velocity.x = move_toward(player.velocity.x, 0, braking_speed)
