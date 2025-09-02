@@ -29,6 +29,10 @@ var current_turn_blend_value : float = 0.0
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+func _ready():
+	
+	pass
+
 func check_transition(input: InputPackage) -> String:
 	input.actions.sort_custom(states_priority_sort)
 	if input.actions[0] == "skate" or player.velocity != Vector3.ZERO:
@@ -58,14 +62,15 @@ func rotate_velocity(input: InputPackage, delta: float):
 		
 		# Skate state animation tree values ##################################
 		is_gliding = false
+		
 				#print("angle in degree: ", abs(rad_to_deg(angle)))
 		if abs(rad_to_deg(angle)) > 0.5:
 			turning_direction = "left" if sign(angle) > 0 else "right" 
 		else:
 			turning_direction = "straight"
 			
-		var target_blend_value = remap(clamp(angle,-0.2,0.2), -0.2, 0.2, -0.5, 0.5)
-		current_turn_blend_value = move_toward(current_turn_blend_value, target_blend_value, 1.0 * delta)
+		var target_blend_value = remap(clamp(angle,-1.0,1.0), -1.0, 1.0, -1, 1)
+		current_turn_blend_value = move_toward(current_turn_blend_value, target_blend_value, 6.0 * delta)
 		# #####################################################################
 		
 		#Sample current angular speed from a pre-defined curve, Takes speed as input, and outputs appropriate angular speed 			

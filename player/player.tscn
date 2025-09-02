@@ -12,8 +12,8 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 
 [sub_resource type="Curve" id="Curve_rgyib"]
-_limits = [0.0, 50.0, 0.0, 8.0]
-_data = [Vector2(0, 38.6697), 0.0, 0.0, 0, 0, Vector2(0.174292, 9.64227), 0.0, 0.0, 0, 0, Vector2(7.98257, 2.15872), 0.0, 0.0, 0, 0]
+_limits = [0.0, 50.0, 0.0, 10.0]
+_data = [Vector2(0, 38.6697), 0.0, 0.0, 0, 0, Vector2(2.67176, 38.5911), 0.0, -5.521, 0, 1, Vector2(9.26209, 2.20588), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6k8r"]
@@ -45,9 +45,10 @@ script = ExtResource("3_g1dw6")
 
 [node name="Skate" type="Node" parent="Model"]
 script = ExtResource("5_qjkh3")
-TOP_SPEED = 10.0
-ACCELERATION = 8.0
-DECELERATION = 6.0
+TOP_SPEED = 12.0
+SPEED_DURING_TURN = 10.0
+ACCELERATION = 10.0
+DECELERATION = 8.0
 angular_speed_curve = SubResource("Curve_rgyib")
 
 [node name="Jump" type="Node" parent="Model"]
@@ -76,5 +77,5 @@ mesh = SubResource("CapsuleMesh_rgyib")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 6.02127, 7.45014)
-fov = 22.9
+fov = 50.0
 size = 12.154
