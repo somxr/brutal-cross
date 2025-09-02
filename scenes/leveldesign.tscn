@@ -1,9 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://vt07xncme1ip"]
+[gd_scene load_steps=6 format=3 uid="uid://vt07xncme1ip"]
 
 [ext_resource type="MeshLibrary" uid="uid://cyprte0xud1p2" path="res://assets/tileset/tileset02.tres" id="1_lhv5s"]
 [ext_resource type="PackedScene" uid="uid://bd2hft778ocrh" path="res://player/player.tscn" id="2_gmwhw"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lhv5s"]
+sky_top_color = Color(0.628137, 0.572755, 0.545503, 1)
+sky_horizon_color = Color(0.571484, 0.690431, 0.767973, 1)
+ground_bottom_color = Color(0.135198, 0.174657, 0.250578, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_gmwhw"]
+sky_material = SubResource("ProceduralSkyMaterial_lhv5s")
+
+[sub_resource type="Environment" id="Environment_cwvsp"]
+background_mode = 2
+sky = SubResource("Sky_gmwhw")
+tonemap_mode = 2
+glow_enabled = true
+
 [node name="leveldesign" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cwvsp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 17.9555, 0)
+light_energy = 0.396
+shadow_enabled = true
 
 [node name="walls_GridMap" type="GridMap" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.687569, 0)
@@ -33,4 +56,4 @@ data = {
 metadata/_editor_floor_ = Vector3(0, -1, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_gmwhw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.98019, 0.156774, 7.59339)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0475, -0.2, 2.14451)
